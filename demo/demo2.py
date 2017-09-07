@@ -73,6 +73,12 @@ def f(x):
 L=map(f,[1,2,3,4])
 print(list(L))
 
+#说明：yield from iterable本质上等于for item in iterable: yield item的缩写版   
+def f_wrapper2(f):
+    yield from f
+f=f_wrapper2((x for x in range(10)))
+for n in f:
+    print(n)
 
 
 from functools import reduce
