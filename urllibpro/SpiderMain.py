@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from urllibpro import UrlManager as u,HtmlDownLoader as d,HtmlParser as p
+from urllibpro import UrlManager as u,HtmlDownLoader as d,HtmlParser as p,OutputManager as o
 class SpiderMain(object):
     def __init__(self):
         #url链接管理器
@@ -9,6 +9,8 @@ class SpiderMain(object):
         self.downloader=d.HtmlDownLoader()
         #解析器
         self.parser=p.HtmlParser()
+        #存储到ES
+        self.output=o.OutputManager();
     def craw_root(self,root_url):
         # 下载根页面内容
         html_content = self.downloader.download(root_url)
@@ -24,15 +26,15 @@ class SpiderMain(object):
                 html_content=self.downloader.download(new_url)
                 #解析页面内容
                 new_data=self.parser._parse_data(new_url,html_content)
-                #输入内容
-                print(new_data)
+                #内容存储到ES
+                self.output._add_data_to_es(new_data)
             except Exception as e:
                 print("error:"+str(e))
 
 if __name__ == '__main__':
     rootUrl="https://book.douban.com/tag/%E5%B0%8F%E8%AF%B4"
     spider=SpiderMain()
-    #解析根页面
+    #解析根页面获取链接地址
     spider.craw_root(rootUrl)
     #解析子页面
     spider.craw()

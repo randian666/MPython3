@@ -33,7 +33,7 @@ class HtmlParser(object):
             url_path=link["href"]
             new_urls.add(url_path)
         return new_urls
-    #获取
+    #获取数据
     def _get_new_data(self,url,soup):
         data={"url":url}
         title_data=soup.find("span",attrs={"property":"v:itemreviewed"})
