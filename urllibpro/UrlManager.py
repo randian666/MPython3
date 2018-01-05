@@ -38,7 +38,7 @@ class UrlManager(object):
     #获取一个新的链接
     def get_new_url(self):
         #获取一个链接并且从redis中移除 返回的是一个bytes 需要转换成str
-        temp_url=bytes.decode(self.r.spop(self.new_urls_key))
+        temp_url=str(self.r.spop(self.new_urls_key),encoding = "utf-8")
         #存入已经爬过的链接key中
         self.r.sadd(self.used_urls_key,temp_url)
         return temp_url
