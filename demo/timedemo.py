@@ -28,7 +28,7 @@ import datetime
 print("当前时间戳为:",time.time())
 #日期格式化
 print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))
-
+print(time.strftime('%Y-%m-%d',time.localtime()))
 # 将格式字符串转换为时间戳
 a = "2017-08-23 11:02:05"
 print(time.mktime(time.strptime(a,'%Y-%m-%d %H:%M:%S')))
