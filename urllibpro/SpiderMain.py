@@ -29,7 +29,7 @@ class SpiderMain(object):
                 #内容存储到ES
                 self.output._add_data_to_es(new_data)
             except Exception as e:
-                print("error:"+str(e))
+                print("error:",e)
 
 if __name__ == '__main__':
     rootUrl="https://book.douban.com/tag/%E5%B0%8F%E8%AF%B4"

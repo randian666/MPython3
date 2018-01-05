@@ -10,7 +10,8 @@ from urllibpro import HtmlParser
 
 class HtmlDownLoader(object):
     def download(self,url,html_encode="utf-8"):
-        reponse=request.urlopen(url)
+        print('begin down url is ',url)
+        reponse=request.urlopen(url,timeout=2000)
         if reponse.getcode()!=200:
             return None
         #获取页面内容
